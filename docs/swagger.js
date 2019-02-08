@@ -1,28 +1,14 @@
-const swaggerJSDoc = require('swagger-jsdoc');
-const dotenv = require('dotenv');
-
-dotenv.config();
-
-// Swagger definition
-const swaggerDefinition = {
+// Basic structure of the swagger definition. Use OAS3
+module.exports = {
+  openapi: '3.0.0',
   info: {
     title: 'REST API for Engagement Support Automation',
     version: '0.0.1',
     description: 'This is the REST API for Engagement Support Automation',
   },
-  host: process.env.DOC_HOST,
-  // basePath: '/api',
+  paths: {},
+  components: {},
+  security: [],
+  tags: [],
+  servers: [],
 };
-
-// options for the swagger docs
-const options = {
-  // import swaggerDefinitions
-  swaggerDefinition,
-  // path to the API docs
-  apis: [
-    './docs/**/*.yaml',
-  ],
-};
-// initialize swagger-jsdoc
-// export default swaggerJSDoc(options);
-module.exports = swaggerJSDoc(options);

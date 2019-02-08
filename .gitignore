@@ -6,3 +6,17 @@ package-lock.json
 .vscode/
 coverage
 .nyc_output
+
+# Webstorm settings
+.idea/
+dump.rdb
+pristine-db.sh
+
+# Yarn
+yarn.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Swagger api documentation
+swagger.json

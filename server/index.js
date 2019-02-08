@@ -1,46 +1,24 @@
-import express from 'express';
-import logger from 'morgan';
-import dotenv from 'dotenv';
-import '@babel/polyfill';
-import bodyParser from 'body-parser';
 import swaggerUi from 'swagger-ui-express';
-import ms from 'ms';
-import validateEnvironmentVars from './validator';
-import swaggerConfig from '../docs/swagger';
-import routes from './routes';
-import worker from './jobs/worker';
+import fs from 'fs';
+import { resolve } from 'path';
+import app from './app';
+import { addServer } from '../express-swagger-generator';
 
-dotenv.config();
 
-// Set up the express app
-const app = express();
+const exportSwaggerDoc = () => process.env.NODE_ENV === 'development' && fs.writeFileSync(
+  resolve(__dirname, '../swagger.json'),
+  JSON.stringify(app.schema, null, 2),
+);
+// Get env variables
 
-// Log requests to the console.
-app.use(logger('dev'));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig));
-
-routes(app);
-
-validateEnvironmentVars();
-// Setup a default catch-all route that sends back a welcome message in JSON format.
-app.get('*', (req, res) => res.status(200).send({
-  message: 'Welcome to the beginning of nothingness.',
-}));
-
-const port = parseInt(process.env.PORT, 10) || 8000;
-app.set('port', port);
-
-// Start worker
-worker.init();
-
-app.listen(port, () => {
-  console.log(`App listening on port ${app.get('port')}`);
+const port = app.get('port');
+const server = app.listen(port, async () => {
+  console.log(`App listening on port ${port}`);
   console.log(`Timer Interval is set to ${process.env.TIMER_INTERVAL}`);
-  setInterval(() => worker.exec(), ms(process.env.TIMER_INTERVAL || '1d'));
-});
 
-export default app;
+  // Get the current host url and add to the app's schema
+  addServer(server, app);
+  // Here we serve the api-docs again because the app.schema has changed
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(app.schema));
+  exportSwaggerDoc();
+});

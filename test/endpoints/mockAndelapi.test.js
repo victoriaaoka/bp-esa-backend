@@ -1,7 +1,7 @@
 import chaiHttp from 'chai-http';
 import sinon from 'sinon';
 import chai, { expect } from 'chai';
-import app from '../../server';
+import app from '../../server/app';
 import slackMocks from '../mocks/slack';
 import { slackClient } from '../../server/modules/slack/slackIntegration';
 

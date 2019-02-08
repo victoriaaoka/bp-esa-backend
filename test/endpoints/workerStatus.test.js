@@ -1,7 +1,7 @@
 import chaiHttp from 'chai-http';
 import chai, { expect } from 'chai';
 import sinon from 'sinon';
-import app from '../../server';
+import app from '../../server/app';
 import client from '../../server/helpers/redis';
 
 chai.use(chaiHttp);
