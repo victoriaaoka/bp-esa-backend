@@ -64,8 +64,8 @@ Issues are always very welcome. Please be sure to follow the [issue template](ht
 ### Pull requests
 We're glad to get pull request if anything is missing or something is buggy. However, there are a couple of things you can do to make life easier for the maintainers:
 
-- Explain the issue that your PR is solving - or link to an existing issue
-- Follow the repository structure, and new sections in the corresponding folders
+- Explain the issue that your PR is solving - or link to an existing issue.
+- Follow the repository structure, and new sections in the corresponding folders.
 
 >**Git Conventions**
 >Make sure you adhere to [our convention](https://github.com/andela/engineering-playbook/tree/master/5.%20Developing/Conventions#commit-message) for your commits and PR.
