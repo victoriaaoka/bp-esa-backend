@@ -58,6 +58,7 @@ The following should be installed in your machine
 
 ## How To Contribute
 
+
 ### Issues
 Issues are always very welcome. Please be sure to follow the [issue template](https://github.com/andela/engineering-playbook/issues/new).
 
