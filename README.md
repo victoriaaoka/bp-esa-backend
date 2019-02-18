@@ -53,7 +53,7 @@ The following should be installed in your machine
 > http:<host_url>:<host_port>/api-docs
 ### How to Access and contribute ESA API Documentation
 * You can access the API documentation on `~<project_root_folder>/docs/swagger/{here}`
-* Each file represents and endpoint and it's configuration.
+* Each file represents an endpoint and it's configuration.
 * Swagger uses `YAML` syntax. You can write documentation to a particular endpoint and add it to the already existing endpoints here `~<project_root_folder>/docs/swagger/{here}`
 
 ## How To Contribute
